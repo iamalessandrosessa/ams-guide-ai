@@ -1,0 +1,216 @@
+.main-content {
+    padding-top: 100px;
+    min-height: 100vh;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.page-title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.page-subtitle {
+    font-size: 1.25rem;
+    color: var(--muted-text);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.guides-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.guide-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 1rem;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.guide-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.guide-item:hover {
+    transform: translateX(8px);
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-xl);
+}
+
+.guide-item:hover::before {
+    transform: scaleX(1);
+}
+
+.guide-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+.guide-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.guide-icon svg {
+    width: 28px;
+    height: 28px;
+    color: white;
+}
+
+.guide-icon.automation {
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+}
+
+.guide-icon.cli {
+    background: linear-gradient(135deg, #7c3aed, #a855f7);
+}
+
+.guide-icon.skills {
+    background: linear-gradient(135deg, #06b6d4, #0891b2);
+}
+
+.guide-icon.kanban {
+    background: linear-gradient(135deg, #f59e0b, #f97316);
+}
+
+.guide-meta {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.guide-badge {
+    padding: 0.375rem 0.875rem;
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background: rgba(37, 99, 235, 0.1);
+    color: var(--primary-color);
+    border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.guide-time {
+    color: var(--muted-text);
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.guide-time::before {
+    content: '⏱️';
+}
+
+.guide-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--light-text);
+}
+
+.guide-description {
+    color: var(--muted-text);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+.guide-topics {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.topic {
+    padding: 0.375rem 0.875rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    color: var(--muted-text);
+    transition: all 0.3s ease;
+}
+
+.guide-item:hover .topic {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.guide-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.guide-link svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.guide-link:hover {
+    gap: 0.75rem;
+}
+
+.guide-link:hover svg {
+    transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding-top: 80px;
+    }
+
+    .guide-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .guide-meta {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .guide-item:hover {
+        transform: translateY(-4px);
+    }
+}
+

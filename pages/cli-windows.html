@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Copilot CLI su Windows - Guide Hub</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/guide-template.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="brand-text">Copilot Guide Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="guides.html" class="active">Guide</a></li>
+                <li><a href="riferimenti.html">Riferimenti</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="guide-banner">
+            <div class="container">
+                <a href="guides.html" class="back-link">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Torna alle guide
+                </a>
+                <h1 class="guide-main-title">Usare GitHub Copilot da CLI su Windows</h1>
+                <p class="guide-subtitle">Guida completa all'installazione e configurazione</p>
+                <div class="guide-info">
+                    <span class="info-item">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        15 minuti
+                    </span>
+                    <span class="info-item">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Guida Base
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="guide-content">
+                <aside class="guide-toc">
+                    <h3>Sommario</h3>
+                    <nav>
+                        <ul>
+                            <li><a href="#intro">Introduzione</a></li>
+                            <li><a href="#prerequisiti">0. Prerequisiti</a></li>
+                            <li><a href="#installazione">1. Installazione</a></li>
+                            <li><a href="#login">2. Login a GitHub</a></li>
+                            <li><a href="#utilizzo">3. Utilizzo Comandi</a></li>
+                        </ul>
+                    </nav>
+                </aside>
+
+                <article class="guide-article">
+                    <section id="intro">
+                        <h2>Introduzione</h2>
+                        <p>Questa guida spiega come installare e usare <strong>GitHub Copilot</strong> direttamente dal terminale su Windows (PowerShell, Windows Terminal, Git Bash o WSL).</p>
+
+                        <div class="info-box">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 16v-4M12 8h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div>
+                                <h4>Cosa Imparerai</h4>
+                                <p>Al termine di questa guida sarai in grado di utilizzare GitHub Copilot direttamente dal terminale per ricevere suggerimenti su comandi, spiegazioni di errori e assistenza interattiva tramite chat.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="prerequisiti">
+                        <h2>0. Prerequisiti</h2>
+                        <p>Prima di iniziare, assicurati di avere:</p>
+
+                        <ul class="check-list">
+                            <li><strong>Windows 10</strong> o superiore</li>
+                            <li><strong>Account GitHub</strong> con Copilot attivo</li>
+                            <li><strong>Connessione Internet</strong> stabile</li>
+                        </ul>
+
+                        <div class="note-box">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div>
+                                <h4>Verifica Accesso GitHub Copilot</h4>
+                                <p>Assicurati che il tuo account GitHub abbia una sottoscrizione attiva di Copilot. Puoi verificarlo nelle impostazioni del tuo account GitHub.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="installazione">
+                        <h2>1. Installazione GitHub Copilot CLI</h2>
+
+                        <h3>Installare tramite Winget</h3>
+                        <p>Apri <strong>PowerShell</strong> o <strong>Windows Terminal</strong> ed esegui il seguente comando:</p>
+
+                        <div class="code-block">
+                            <code>winget install GitHub.Copilot</code>
+                        </div>
+
+                        <p>Questo comando installa il pacchetto <strong>Copilot CLI</strong> completo sul tuo sistema.</p>
+
+                        <div class="note-box">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div>
+                                <h4>Importante</h4>
+                                <p>Al termine dell'installazione, chiudi e riapri il terminale per assicurarti che le variabili d'ambiente siano aggiornate correttamente.</p>
+                            </div>
+                        </div>
+
+                        <h3>Verifica Installazione</h3>
+                        <p>Per verificare che l'installazione sia andata a buon fine, esegui:</p>
+
+                        <div class="code-block">
+                            <code>copilot</code>
+                        </div>
+
+                        <p>Se vieni reindirizzato nel <strong>terminale GitHub Copilot CLI</strong>, l'installazione è corretta e puoi procedere.</p>
+                    </section>
+
+                    <section id="login">
+                        <h2>2. Login ed Accesso a GitHub</h2>
+
+                        <p>Una volta installato, devi autenticare il CLI con il tuo account GitHub.</p>
+
+                        <h3>Procedura di Login</h3>
+                        <ol class="steps-list">
+                            <li>
+                                <strong>Avvia il comando di login</strong>
+                                <p>All'interno del terminale Copilot, esegui:</p>
+                                <div class="code-block">
+                                    <code>/login</code>
+                                </div>
+                            </li>
+                            <li>
+                                <strong>Seleziona il metodo di autenticazione</strong>
+                                <p>Quando richiesto, seleziona:</p>
+                                <ul>
+                                    <li><strong>GitHub.com</strong> (per login via browser)</li>
+                                </ul>
+                            </li>
+                            <li>
+                                <strong>Completa l'autenticazione</strong>
+                                <p>Segui le istruzioni per l'inserimento del codice sul web. Ti verrà chiesto di:</p>
+                                <ul>
+                                    <li>Aprire il browser</li>
+                                    <li>Inserire il codice visualizzato nel terminale</li>
+                                    <li>Accedere con l'account GitHub che ha Copilot attivo</li>
+                                </ul>
+                            </li>
+                        </ol>
+
+                        <div class="note-box">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div>
+                                <h4>Conferma Login</h4>
+                                <p>Una volta completata l'autenticazione, vedrai il messaggio:<br>
+                                <code>● Signed in successfully as xxxxx! You can now use Copilot.</code></p>
+                            </div>
+                        </div>
+
+                        <p>Ora puoi utilizzare <strong>GitHub Copilot CLI</strong>.</p>
+                    </section>
+
+                    <section id="utilizzo">
+                        <h2>3. Utilizzo dei Comandi Principali</h2>
+
+                        <p>GitHub Copilot CLI offre diversi comandi per assistere il tuo lavoro quotidiano dal terminale.</p>
+
+                        <h3>3.1. Suggerire Comandi</h3>
+                        <p>Usa il comando <code>suggest</code> per ricevere suggerimenti su come eseguire un'operazione:</p>
+
+                        <div class="code-block">
+                            <code>copilot suggest "descrizione del comando"</code>
+                        </div>
+
+                        <div class="tool-card">
+                            <h4>Esempio Pratico</h4>
+                            <div class="code-block">
+                                <code>copilot suggest "mostra i processi che usano la porta 8080"</code>
+                            </div>
+                            <p>Copilot ti fornirà il comando appropriato per il tuo sistema operativo.</p>
+                        </div>
+
+                        <h3>3.2. Spiegare Comandi o Errori</h3>
+                        <p>Usa il comando <code>explain</code> per ottenere una spiegazione dettagliata di un comando o errore:</p>
+
+                        <div class="code-block">
+                            <code>copilot explain "comando o errore"</code>
+                        </div>
+
+                        <div class="tool-card">
+                            <h4>Esempio Pratico</h4>
+                            <div class="code-block">
+                                <code>copilot explain "permission denied while binding to port 80"</code>
+                            </div>
+                            <p>Copilot analizzerà l'errore e ti spiegherà la causa e possibili soluzioni.</p>
+                        </div>
+
+                        <h3>3.3. Modalità Chat</h3>
+                        <p>Per una conversazione interattiva con Copilot, usa la modalità chat:</p>
+
+                        <div class="code-block">
+                            <code>copilot chat</code>
+                        </div>
+
+                        <p>In questa modalità puoi porre domande in linguaggio naturale e ricevere assistenza contestuale continuativa.</p>
+
+                        <h3>3.4. Cambiare LLM</h3>
+                        <p>Puoi selezionare un modello linguistico diverso utilizzando:</p>
+
+                        <div class="code-block">
+                            <code>/model</code>
+                        </div>
+
+                        <p>Questo comando ti permette di scegliere tra i modelli disponibili per ottimizzare le risposte in base alle tue esigenze.</p>
+
+                        <div class="info-box">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 16v-4M12 8h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div>
+                                <h4>Suggerimento</h4>
+                                <p>Sii quanto più specifico possibile nelle tue richieste. Più dettagli fornisci, migliori saranno i suggerimenti di Copilot.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2>Prossimi Passi</h2>
+                        <p>Ora che hai configurato GitHub Copilot CLI, puoi:</p>
+
+                        <div class="feature-grid">
+                            <div class="mini-card">
+                                <h4>Esplorare Agent Skills</h4>
+                                <p>Scopri funzionalità avanzate con le Agent Skills</p>
+                            </div>
+                            <div class="mini-card">
+                                <h4>Automation Tools</h4>
+                                <p>Integra Copilot con strumenti di automazione</p>
+                            </div>
+                            <div class="mini-card">
+                                <h4>Metodologie Agile</h4>
+                                <p>Usa Copilot per gestire backlog e Kanban</p>
+                            </div>
+                        </div>
+
+                        <div class="external-link-box">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div>
+                                <h4>Esplora Altre Guide</h4>
+                                <p>Continua il tuo percorso di apprendimento con le altre guide disponibili</p>
+                                <a href="guides.html" class="external-btn">
+                                    Tutte le Guide
+                                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>GitHub Copilot Guide Hub</h4>
+                    <p>Risorse e documentazione per sviluppatori</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Link Utili</h4>
+                    <ul>
+                        <li><a href="https://github.com/features/copilot" target="_blank">GitHub Copilot</a></li>
+                        <li><a href="https://docs.github.com/copilot" target="_blank">Documentazione Ufficiale</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GitHub Copilot Guide Hub. Tutte le guide sono a scopo educativo.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/script.js"></script>
+</body>
+</html>
+

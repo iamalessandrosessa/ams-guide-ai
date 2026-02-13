@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnica Backlog + Kanban - Guide Hub</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/guide-template.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="brand-text">Copilot Guide Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="guides.html" class="active">Guide</a></li>
+                <li><a href="riferimenti.html">Riferimenti</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="guide-banner">
+            <div class="container">
+                <a href="guides.html" class="back-link">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Torna alle guide
+                </a>
+                <h1 class="guide-main-title">Tecnica Backlog + Kanban con GitHub Copilot</h1>
+                <p class="guide-subtitle">Gestione Spec-Driven del workflow con Backlog.md</p>
+                <div class="guide-info">
+                    <span class="info-item">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        45 minuti
+                    </span>
+                    <span class="info-item">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Metodologia
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="guide-content">
+                <aside class="guide-toc">
+                    <h3>Sommario</h3>
+                    <nav>
+                        <ul>
+                            <li><a href="#cosa">Cosa stai costruendo</a></li>
+                            <li><a href="#prerequisiti">Prerequisiti</a></li>
+                            <li><a href="#installazione">Installazione</a></li>
+                            <li><a href="#init">Backlog Init</a></li>
+                            <li><a href="#struttura">Struttura Spec-Driven</a></li>
+                            <li><a href="#prompt">Scrivere prompt.md</a></li>
+                            <li><a href="#spec">Generare spec.md</a></li>
+                            <li><a href="#task-gen">Generare task</a></li>
+                            <li><a href="#task-create">Creare task</a></li>
+                            <li><a href="#comandi">Comandi essenziali</a></li>
+                            <li><a href="#esecuzione-ide">Esecuzione Agent Mode</a></li>
+                            <li><a href="#esecuzione-cli">Esecuzione CLI</a></li>
+                            <li><a href="#continuita">Continuità sessioni</a></li>
+                            <li><a href="#best-practices">Best Practices</a></li>
+                        </ul>
+                    </nav>
+                </aside>
+
+                <article class="guide-article">
+                    <section id="cosa">
+                        <h2>0. Cosa stai costruendo (in 20 secondi)</h2>
+                        <p>Un sistema dove:</p>
+
+                        <ol class="steps-list">
+                            <li>
+                                <strong>Scrivi l'idea in prompt.md</strong>
+                                <p>La tua visione iniziale del progetto</p>
+                            </li>
+                            <li>
+                                <strong>Copilot la converte in spec.md</strong>
+                                <p>Specifica impeccabile, versionata come file reale</p>
+                            </li>
+                            <li>
+                                <strong>Da spec.md generi task atomici</strong>
+                                <p>Nel backlog, file reali e versionati</p>
+                            </li>
+                            <li>
+                                <strong>Gestisci lo stato con Kanban</strong>
+                                <p>CLI o Web UI integrata</p>
+                            </li>
+                            <li>
+                                <strong>Copilot lavora task-by-task</strong>
+                                <p>Su branch dedicata, con tracking completo</p>
+                            </li>
+                            <li>
+                                <strong>Ricostruisci il contesto</strong>
+                                <p>Da spec.md + backlog + board, senza memoria chat</p>
+                            </li>
+                        </ol>
+
+                        <div class="note-box">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div>
+                                <h4>Il Segreto</h4>
+                                <p><strong>La chat è effimera, il repo è memoria.</strong></p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="prerequisiti">
+                        <h2>1. Prerequisiti</h2>
+                        <ul class="check-list">
+                            <li>Node.js + npm funzionanti</li>
+                            <li>Repo Git inizializzato (<code>git init</code>) oppure esistente</li>
+                            <li>Editor/IDE con Copilot (o Copilot CLI)</li>
+                        </ul>
+                    </section>
+
+                    <section id="installazione">
+                        <h2>2. Installazione Backlog.md</h2>
+                        <p>Backlog.md è una CLI: puoi installarla <strong>globalmente</strong> (una volta sola sul PC) oppure <strong>localmente</strong> nel progetto (versionata nel repo).</p>
+
+                        <h3>Opzione A — Installazione globale (consigliata per uso personale)</h3>
+
+                        <div class="tool-card">
+                            <h4>Quando sceglierla</h4>
+                            <ul>
+                                <li>Vuoi usare Backlog.md su più progetti senza reinstallare</li>
+                                <li>Vuoi digitare direttamente <code>backlog ...</code> nel terminale</li>
+                                <li>Non ti interessa "bloccare" una versione specifica nel repository</li>
+                            </ul>
+                        </div>
+
+                        <p><strong>Installazione:</strong></p>
+                        <div class="code-block">
+                            <code>npm install -g backlog.md</code>
+                        </div>
+
+                        <p><strong>Verifica:</strong></p>
+                        <div class="code-block">
+                            <code>backlog --version</code>
+                        </div>
+
+                        <p><strong>Uso:</strong></p>
+                        <div class="code-block">
+                            <code>cd /path/to/project<br>backlog init "NomeProgetto"</code>
+                        </div>
+
+                        <h3>Opzione B — Installazione nel progetto (consigliata per team e CI/CD)</h3>
+
+                        <div class="tool-card">
+                            <h4>Quando sceglierla</h4>
+                            <ul>
+                                <li>Vuoi che il progetto "si porti dietro" la dipendenza</li>
+                                <li>Vuoi usare Backlog.md in pipeline CI (GitHub Actions / GitLab CI)</li>
+                                <li>Lavorate in team e volete evitare "a me funziona, a te no"</li>
+                            </ul>
+                        </div>
+
+                        <p><strong>Prerequisito:</strong> Devi essere nella root del progetto (dove c'è <code>package.json</code>)</p>
+                        <div class="code-block">
+                            <code>npm init -y  # se package.json non esiste</code>
+                        </div>
+
+                        <p><strong>Installazione:</strong></p>
+                        <div class="code-block">
+                            <code>npm install --save-dev backlog.md</code>
+                        </div>
+
+                        <p><strong>Esecuzione:</strong></p>
+                        <div class="code-block">
+                            <code>npx backlog --version<br>npx backlog init "NomeProgetto"</code>
+                        </div>
+                    </section>
+
+                    <section id="init">
+                        <h2>3. Backlog Init (wizard) — cosa scegliere e perché</h2>
+                        <p>Nella root del progetto:</p>
+                        <div class="code-block">
+                            <code>npx backlog init "NomeProgetto"</code>
+                        </div>
+
+                        <h3>3.1 Scelta: AI Integration</h3>
+                        <p><strong>Scegliere:</strong> <code>via CLI commands (broader compatibility)</code></p>
+
+                        <div class="info-box">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 16v-4M12 8h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div>
+                                <h4>Cosa significa</h4>
+                                <p>Backlog.md non presume un editor MCP-ready, ti genera file di istruzioni "legacy" per far usare il backlog agli agenti tramite lettura file e comandi CLI.</p>
+                                <p>Il flusso Spec-Driven funziona perfettamente anche con CLI integration.</p>
+                            </div>
+                        </div>
+
+                        <h3>3.2 "Select instruction files..."</h3>
+                        <p>Otterrai: <code>.github/copilot-instructions.md</code></p>
+                        <p>Perfetto: è il "contratto comportamentale" per Copilot.</p>
+
+                        <h3>3.3 Advanced Settings</h3>
+                        <div class="tool-card">
+                            <h4>Configurazione consigliata</h4>
+                            <ul>
+                                <li><strong>Check task states across active branches:</strong> SI</li>
+                                <li><strong>Check task states in remote branches:</strong> SI</li>
+                                <li><strong>Active branch days:</strong> 30</li>
+                                <li><strong>Bypass git hooks when committing:</strong> NO</li>
+                                <li><strong>Auto commit:</strong> NO</li>
+                                <li><strong>Zero-padded IDs:</strong> 3 digits (task-001, task-002...)</li>
+                                <li><strong>Web UI port:</strong> 6420 (apri browser automaticamente)</li>
+                            </ul>
+                        </div>
+
+                        <div class="note-box">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div>
+                                <h4>Nota importante</h4>
+                                <p>"Bypass git hooks: yes" è comodo, ma in team può essere pericoloso (salti controlli). Per uso personale/locale va bene; in team valuta attentamente.</p>
+                            </div>
+                        </div>
+
+                        <h3>3.4 Shell completions failed (Windows)</h3>
+                        <p>Su Windows è normale vedere: <code>Could not detect your shell...</code></p>
+                        <p><strong>Soluzione pragmatica:</strong></p>
+                        <ul>
+                            <li>Se usi Git Bash: <code>--shell bash</code></li>
+                            <li>Se usi WSL: <code>--shell bash</code> o <code>zsh</code></li>
+                            <li>Se non sai/ti cambia poco: ignora completions, non blocca nulla</li>
+                        </ul>
+                    </section>
+
+                    <section id="struttura">
+                        <h2>4. Struttura "Spec-Driven" nel repo</h2>
+                        <p>Dopo init, crea questi file (se non esistono):</p>
+                        <div class="code-block">
+                            <code>prompt.md<br>spec.md</code>
+                        </div>
+
+                        <p>E aggiungi due file guida nel backlog (consigliatissimi):</p>
+                        <div class="code-block">
+                            <code>backlog/00_overview.md<br>backlog/ROADMAP.md</code>
+                        </div>
+
+                        <p>Backlog.md gestisce i task in <code>backlog/tasks/...</code>, ma aggiungiamo anche <code>00_overview.md</code> e <code>ROADMAP.md</code> come "orchestrazione umana+AI".</p>
+                    </section>
+
+                    <section id="prompt">
+                        <h2>5. Scrivere prompt.md (l'innesco)</h2>
+                        <p><strong>Template pratico da copiare:</strong></p>
+
+                        <div class="code-block">
+                            <code># Prompt<br>
+<br>
+## Obiettivo<br>
+Cosa voglio ottenere (1-3 frasi).<br>
+<br>
+## Contesto<br>
+- Repo: &lt;nome&gt;<br>
+- Vincoli: (compatibilità, performance, sicurezza)<br>
+- Parti interessate: (moduli, servizi, UI)<br>
+<br>
+## Requisiti iniziali<br>
+- R1:<br>
+- R2:<br>
+<br>
+## Non fare (Out of scope)<br>
+- OOS1:<br>
+- OOS2:<br>
+<br>
+## Note<br>
+- Dipendenze<br>
+- Rischi</code>
+                        </div>
+
+                        <p>Questo file può essere grezzo.</p>
+                    </section>
+
+                    <section id="spec">
+                        <h2>6. Generare spec.md da prompt.md</h2>
+                        <p><strong>Prompt corretto per Copilot (IDE Agent o CLI):</strong></p>
+
+                        <div class="tool-card">
+                            <h4>PROMPT da usare</h4>
+                            <div class="code-block">
+                                <code>Leggi il file prompt.md. Genera una specifica tecnica completa e salva l'output nel file spec.md nella root del progetto. Se spec.md esiste, sovrascrivilo completamente.<br>
+<br>
+La spec deve includere:<br>
+1. Scopo<br>
+2. Ambito (In scope / Out of scope)<br>
+3. Requisiti funzionali numerati (RF1, RF2, ...)<br>
+4. Requisiti non funzionali (RNF1, ...: sicurezza, logging, performance)<br>
+5. Flussi / Use cases<br>
+6. Modifiche previste (componenti/file/aree)<br>
+7. Edge cases<br>
+8. Acceptance criteria testabili (AC1, AC2, ...)<br>
+9. Strategia di test (unit/integration/manual)<br>
+<br>
+Non scrivere la spec in chat: scrivila SOLO nel file spec.md.</code>
+                            </div>
+                        </div>
+
+                        <p><strong>Risultato atteso:</strong> <code>spec.md</code> diventa la tua "verità tecnica".</p>
+                    </section>
+
+                    <section id="task-gen">
+                        <h2>7. Generare task ATOMICI da spec.md</h2>
+                        <p>Serve disciplina in due sottopassi:</p>
+
+                        <h3>7.1 Sottopasso A: Copilot produce una LISTA task</h3>
+
+                        <div class="tool-card">
+                            <h4>PROMPT</h4>
+                            <div class="code-block">
+                                <code>Leggi spec.md. Scomponi la specifica in task atomici (max 2-3 ore ciascuno).<br>
+<br>
+Ogni task deve avere:<br>
+• Titolo breve<br>
+• Descrizione (2-6 righe)<br>
+• Acceptance criteria (2-6 punti, testabili)<br>
+<br>
+Vincoli:<br>
+• Un task = una responsabilità<br>
+• Doc di riferimento: spec.md<br>
+• Evita task "mega"<br>
+• Indica eventuali dipendenze tra task<br>
+<br>
+Crea un file dei tasks (così posso eseguirli uno per uno o creare uno script).<br>
+Il file chiamalo tasks-breakdown.md.</code>
+                            </div>
+                        </div>
+
+                        <h3>7.2 Sottopasso B: Copilot genera i COMANDI Backlog.md</h3>
+
+                        <div class="tool-card">
+                            <h4>PROMPT</h4>
+                            <div class="code-block">
+                                <code>Genera i comandi backlog task create per ogni task dal file tasks-breakdown.md.<br>
+<br>
+Ogni comando deve includere:<br>
+• Titolo<br>
+• Descrizione (-d)<br>
+• Tutti gli acceptance criteria come --ac ripetuti<br>
+• Documento spec.md di riferimento (--doc spec.md)<br>
+• Altri parametri utili<br>
+<br>
+Non eseguire i comandi: generali soltanto.<br>
+<br>
+Metti tutti i comandi dei tasks in uno script unico eseguibile da PowerShell di Windows e dimmi come lanciarlo in chat.</code>
+                            </div>
+                        </div>
+
+                        <p>A quel punto copi/incolli i comandi nel terminale, o esegui script generato.</p>
+                    </section>
+
+                    <section id="task-create">
+                        <h2>8. Creare task in Backlog.md</h2>
+                        <p><strong>Esempio di comando completo:</strong></p>
+
+                        <div class="code-block">
+                            <code>backlog task create "Implement authentication endpoint" ^<br>
+&nbsp;&nbsp;-d "Create POST /auth/login according to spec.md (RF1, RF2). Include validation and error handling." ^<br>
+&nbsp;&nbsp;--doc spec.md ^<br>
+&nbsp;&nbsp;--ac "Returns 200 and a token on valid credentials" ^<br>
+&nbsp;&nbsp;--ac "Returns 401 on invalid credentials" ^<br>
+&nbsp;&nbsp;--ac "Logs authentication attempts without sensitive data"</code>
+                        </div>
+
+                        <div class="info-box">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 16v-4M12 8h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div>
+                                <h4>Nota Windows</h4>
+                                <p>Su Windows CMD usa <code>^</code> per multilinea. Su PowerShell spesso funziona con backtick <code>`</code>. In alternativa scrivi tutto su una riga.</p>
+                            </div>
+                        </div>
+
+                        <p>Backlog.md crea file tipo: <code>backlog/tasks/task-001 - Implement authentication endpoint.md</code></p>
+                    </section>
+
+                    <section id="comandi">
+                        <h2>9. Comandi Backlog.md essenziali</h2>
+
+                        <div class="tool-card">
+                            <h4>Board Kanban in CLI</h4>
+                            <div class="code-block">
+                                <code>backlog board</code>
+                            </div>
+                        </div>
+
+                        <div class="tool-card">
+                            <h4>Avvia Web UI Kanban</h4>
+                            <div class="code-block">
+                                <code>backlog browser</code>
+                            </div>
+                            <p>Userà la porta che hai scelto (6420).</p>
+                        </div>
+
+                        <div class="tool-card">
+                            <h4>Lista task</h4>
+                            <div class="code-block">
+                                <code>backlog task list</code>
+                            </div>
+                        </div>
+
+                        <div class="tool-card">
+                            <h4>Modifica task</h4>
+                            <div class="code-block">
+                                <code>backlog task edit 001 -s "In Progress"<br>backlog task edit 001 -s "Done"</code>
+                            </div>
+                        </div>
+
+                        <div class="tool-card">
+                            <h4>(Opzionale) Riprova completions</h4>
+                            <div class="code-block">
+                                <code>backlog completion install --shell bash</code>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="esecuzione-ide">
+                        <h2>10. Esecuzione con Copilot IDE (Agent Mode)</h2>
+                        <p>Dopo che <code>spec.md</code> e i task Backlog.md sono stati creati, la "palla" passa all'agente che deve gestire il ciclo di vita dei task in modo tracciabile.</p>
+
+                        <h3>Setup operativo</h3>
+                        <p>Apri (o rendi disponibili all'agente) questi elementi:</p>
+                        <ul class="check-list">
+                            <li><code>backlog task list --plain</code> (stato globale)</li>
+                            <li><code>backlog task &lt;ID&gt; --plain</code> (dettaglio task scelto)</li>
+                            <li><code>spec.md</code> (contratto tecnico)</li>
+                            <li><code>.github/copilot-instructions.md</code> (regole)</li>
+                            <li><code>backlog/00_overview.md</code> (orchestrazione)</li>
+                        </ul>
+
+                        <h3>Algoritmo di selezione task (deterministico)</h3>
+                        <ol class="steps-list">
+                            <li>
+                                <strong>Task in Progress</strong>
+                                <p>Se esistono task in In Progress, riprende il più vecchio (o quello col numero più basso)</p>
+                            </li>
+                            <li>
+                                <strong>Task To Do</strong>
+                                <p>Altrimenti prende il primo task in To Do in ordine numerico</p>
+                            </li>
+                            <li>
+                                <strong>Leggi plan/notes</strong>
+                                <p>Prima di implementare, legge plan/notes già presenti</p>
+                            </li>
+                            <li>
+                                <strong>In Progress + Plan</strong>
+                                <p>Mette il task In Progress e inserisce un Implementation Plan</p>
+                            </li>
+                            <li>
+                                <strong>Implementa</strong>
+                                <p>Solo ciò che serve a soddisfare gli Acceptance Criteria</p>
+                            </li>
+                            <li>
+                                <strong>Aggiorna Notes</strong>
+                                <p>Aggiorna progressivamente le Implementation Notes</p>
+                            </li>
+                            <li>
+                                <strong>Check AC</strong>
+                                <p>Spunta gli AC man mano che vengono soddisfatti</p>
+                            </li>
+                            <li>
+                                <strong>Final Summary</strong>
+                                <p>Scrive un Final Summary con modifiche e test eseguiti</p>
+                            </li>
+                            <li>
+                                <strong>Done</strong>
+                                <p>Marca Done solo se tutti gli AC sono soddisfatti</p>
+                            </li>
+                        </ol>
+
+                        <h3>Prompt "Master" (Backlog Task Manager)</h3>
+                        <div class="tool-card">
+                            <h4>PROMPT MASTER — Modalità Backlog Task Manager (Copilot Agent)</h4>
+                            <div class="code-block" style="font-size: 0.85rem; max-height: 500px; overflow-y: auto;">
+                                <code>Sei un agente di sviluppo che lavora in modalità "Backlog Task Manager".<br>
+<br>
+<strong>OBIETTIVO:</strong> Gestire e implementare i task Backlog.md in modo deterministico e tracciabile, 1 task alla volta, aggiornando sempre stato, plan, notes, acceptance criteria e final summary.<br>
+<br>
+<strong>REGOLE NON NEGOZIABILI:</strong><br>
+1) Lavora su UN SOLO task alla volta.<br>
+2) Non modificare file fuori dallo scope del task corrente.<br>
+3) Prima di scrivere codice:<br>
+&nbsp;&nbsp;&nbsp;- identifica il task da prendere in carico seguendo l'algoritmo sotto<br>
+&nbsp;&nbsp;&nbsp;- leggi il file del task e spec.md<br>
+&nbsp;&nbsp;&nbsp;- scrivi un Implementation Plan nel task<br>
+4) Durante l'implementazione:<br>
+&nbsp;&nbsp;&nbsp;- aggiorna Implementation Notes a step<br>
+&nbsp;&nbsp;&nbsp;- spunta gli Acceptance Criteria appena soddisfatti<br>
+5) Alla fine:<br>
+&nbsp;&nbsp;&nbsp;- esegui (o indica) i test/build necessari<br>
+&nbsp;&nbsp;&nbsp;- scrivi Final Summary dettagliato<br>
+&nbsp;&nbsp;&nbsp;- marca il task Done SOLO se tutti gli AC sono spuntati<br>
+6) Se trovi ambiguità:<br>
+&nbsp;&nbsp;&nbsp;- NON inventare<br>
+&nbsp;&nbsp;&nbsp;- aggiungi una nota nel task con la domanda<br>
+<br>
+<strong>ALGORITMO DI SELEZIONE TASK:</strong><br>
+A) Esegui backlog task list --plain<br>
+B) Se esiste un task In Progress: scegli quello con ID più basso<br>
+C) Altrimenti: scegli il primo task in To Do con ID più basso<br>
+<br>
+<strong>PROCEDURA OPERATIVA:</strong><br>
+1) Esegui backlog task N --plain<br>
+2) Metti il task In Progress: backlog task edit N -s "In Progress"<br>
+3) Se non esiste Implementation Plan, scrivilo<br>
+4) Implementa nel codice<br>
+5) Dopo ogni step: backlog task edit N --append-notes "..."<br>
+6) Quando soddisfi AC: backlog task edit N --check-ac X<br>
+7) A fine task: backlog task edit N --final-summary "..."<br>
+8) backlog task edit N -s Done<br>
+<br>
+<strong>OUTPUT ATTESO:</strong><br>
+- Sequenza chiara di comandi backlog + azioni nel codice<br>
+- Zero task lasciati "a metà" senza note<br>
+- Stato Kanban sempre aggiornato</code>
+                            </div>
+                        </div>
+
+                        <p><strong>Come usarlo:</strong> Apri Copilot Agent, incolla questo prompt, e poi digli: "Esegui un ciclo completo sul prossimo task".</p>
+                    </section>
+
+                    <section id="esecuzione-cli">
+                        <h2>11. Esecuzione con Copilot CLI</h2>
+                        <p>Copilot CLI è ottimo per:</p>
+                        <ul>
+                            <li>Generare spec (scrivere <code>spec.md</code>)</li>
+                            <li>Decomporre task</li>
+                            <li>Fare review rispetto agli AC</li>
+                        </ul>
+
+                        <p><strong>Esempio "review":</strong></p>
+                        <div class="code-block">
+                            <code>Confronta le modifiche correnti con gli acceptance criteria del task-001. Elenca eventuali gap e suggerisci fix minimi.</code>
+                        </div>
+                    </section>
+
+                    <section id="continuita">
+                        <h2>12. Continuità tra chat/sessioni</h2>
+                        <p>Se domani apri una nuova chat e dici:</p>
+                        <div class="code-block">
+                            <code>"Ripartiamo. Analizza spec e backlog e dimmi il prossimo task."</code>
+                        </div>
+
+                        <p>L'agente può:</p>
+                        <ol class="steps-list">
+                            <li>
+                                <strong>Leggere spec.md</strong>
+                                <p>Contratto tecnico</p>
+                            </li>
+                            <li>
+                                <strong>Leggere backlog/tasks/</strong>
+                                <p>Stato e contenuti</p>
+                            </li>
+                            <li>
+                                <strong>Leggere backlog/ROADMAP.md</strong>
+                                <p>Ordine e progresso</p>
+                            </li>
+                        </ol>
+
+                        <div class="note-box">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div>
+                                <h4>Zero dipendenza dalla memoria chat</h4>
+                                <p>Tutto è ricostruibile dal repository.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="best-practices">
+                        <h2>13. Best Practices</h2>
+
+                        <div class="feature-grid">
+                            <div class="mini-card">
+                                <h4>I/O esplicito sempre</h4>
+                                <p>"scrivi in spec.md", "genera comandi backlog task create"</p>
+                            </div>
+                            <div class="mini-card">
+                                <h4>Task piccoli</h4>
+                                <p>2-3 ore massimo per task</p>
+                            </div>
+                            <div class="mini-card">
+                                <h4>AC testabili</h4>
+                                <p>Acceptance criteria chiari e misurabili</p>
+                            </div>
+                            <div class="mini-card">
+                                <h4>No scope creep</h4>
+                                <p>Copilot non rifattorizza "perché sì"</p>
+                            </div>
+                            <div class="mini-card">
+                                <h4>Spec prima del codice</h4>
+                                <p>Sempre documentare prima di implementare</p>
+                            </div>
+                            <div class="mini-card">
+                                <h4>Kanban aggiornato</h4>
+                                <p>Stato In Progress/Done sempre sincronizzato</p>
+                            </div>
+                        </div>
+
+                        <h3>Anti-pattern (cose da evitare)</h3>
+                        <ul class="check-list">
+                            <li style="color: var(--muted-text);">"Implementa tutta la spec" — troppo generico</li>
+                            <li style="color: var(--muted-text);">Task vaghi tipo "migliora performance" — non misurabile</li>
+                            <li style="color: var(--muted-text);">AC non misurabili tipo "deve essere fatto bene" — ambiguo</li>
+                            <li style="color: var(--muted-text);">Modifiche massive multi-modulo in un task — troppo grande</li>
+                            <li style="color: var(--muted-text);">Non aggiornare lo stato Kanban — perdi tracciabilità</li>
+                        </ul>
+
+                        <h3>Mini-cheat-sheet dei comandi</h3>
+                        <div class="code-block">
+                            <code># Init<br>
+npx backlog init "NomeProgetto"<br>
+<br>
+# Task<br>
+backlog task create "Titolo" -d "Descrizione" --ac "AC1" --ac "AC2"<br>
+backlog task list<br>
+backlog task edit 001 -s "In Progress"<br>
+backlog task edit 001 -s "Done"<br>
+<br>
+# Kanban<br>
+backlog board<br>
+backlog browser<br>
+<br>
+# (opzionale)<br>
+backlog completion install --shell bash</code>
+                        </div>
+                    </section>
+
+                    <div class="external-link-box">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <div>
+                            <h4>Integra con Altri Tools</h4>
+                            <p>Combina questa metodologia con gli automation assets e Agent Skills per massimizzare la produttività del team.</p>
+                            <a href="automation-assets.html" class="external-btn">
+                                Scopri Automation Assets
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>GitHub Copilot Guide Hub</h4>
+                    <p>Risorse e documentazione per sviluppatori</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Link Utili</h4>
+                    <ul>
+                        <li><a href="https://github.com/features/copilot" target="_blank">GitHub Copilot</a></li>
+                        <li><a href="https://docs.github.com/copilot" target="_blank">Documentazione Ufficiale</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GitHub Copilot Guide Hub. Tutte le guide sono a scopo educativo.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/script.js"></script>
+</body>
+</html>
+

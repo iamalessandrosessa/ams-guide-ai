@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Skills con GitHub Copilot - Guide Hub</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/guide-template.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="brand-text">Copilot Guide Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="guides.html" class="active">Guide</a></li>
+                <li><a href="riferimenti.html">Riferimenti</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="guide-banner">
+            <div class="container">
+                <a href="guides.html" class="back-link">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Torna alle guide
+                </a>
+                <h1 class="guide-main-title">Usare Agent Skills con GitHub Copilot</h1>
+                <p class="guide-subtitle">VS Code e IntelliJ con esempi reali Spring Java e Angular</p>
+                <div class="guide-info">
+                    <span class="info-item">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 6v6l4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        20 minuti
+                    </span>
+                    <span class="info-item">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        Avanzata
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="guide-content">
+                <aside class="guide-toc">
+                    <h3>Contenuti</h3>
+                    <nav>
+                        <ul>
+                            <li><a href="#intro">Cos'è una Agent Skill</a></li>
+                            <li><a href="#trovare">Dove trovare Skills</a></li>
+                            <li><a href="#posizionamento">Posizionamento Skills</a></li>
+                            <li><a href="#vscode">Uso in VS Code</a></li>
+                            <li><a href="#intellij">Uso in IntelliJ</a></li>
+                            <li><a href="#esempi">Esempi Reali</a></li>
+                            <li><a href="#riferimenti">Riferimenti Ufficiali</a></li>
+                        </ul>
+                    </nav>
+                </aside>
+
+                <article class="guide-article">
+                    <section id="intro">
+                        <h2>Cos'è una Agent Skill e perché dovresti usarla</h2>
+                        <p>Una <strong>Agent Skill</strong> è un modulo strutturato che estende il comportamento del coding agent di GitHub Copilot. Non è un semplice prompt salvato, ma una cartella con un file <code>SKILL.md</code> (più eventuali script o template) che contiene:</p>
+
+                        <ul class="check-list">
+                            <li>Regole operative</li>
+                            <li>Linee guida</li>
+                            <li>Standard architetturali</li>
+                            <li>Formato dell'output richiesto</li>
+                            <li>Checklist</li>
+                        </ul>
+
+                        <div class="note-box">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div>
+                                <h4>Come Funziona</h4>
+                                <p>Quando usi Copilot in Agent Mode, l'agente:</p>
+                                <ol>
+                                    <li>Legge il tuo prompt</li>
+                                    <li>Verifica se esiste una Skill coerente</li>
+                                    <li>Carica automaticamente le istruzioni della Skill</li>
+                                    <li>Esegue il task seguendo quelle regole</li>
+                                </ol>
+                                <p><strong>Risultato</strong>: l'AI non lavora più in modo generico, ma secondo pattern ripetibili e coerenti.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="trovare">
+                        <h2>Dove trovare Skills già pronte</h2>
+                        <p>Puoi creare le tue Skill personalizzate oppure installare Skill già pronte da marketplace come <a href="https://skills.sh/" target="_blank"><strong>skills.sh</strong></a>.</p>
+
+                        <p><strong>skills.sh</strong> è un directory di repository contenenti Skill compatibili con lo standard Agent Skills.</p>
+
+                        <h3>Esempi utili per stack Angular + Spring</h3>
+
+                        <div class="feature-grid">
+                            <div class="mini-card">
+                                <h4>Angular</h4>
+                                <ul>
+                                    <li>angular-architect</li>
+                                    <li>angular-best-practices</li>
+                                    <li>debug:angular</li>
+                                </ul>
+                            </div>
+                            <div class="mini-card">
+                                <h4>Java</h4>
+                                <ul>
+                                    <li>best-java-structure</li>
+                                    <li>lombok-patterns</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="info-box">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 16v-4M12 8h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div>
+                                <h4>Nota Importante</h4>
+                                <p>Molte Skill su skills.sh non sono "ufficiali GitHub", ma compatibili con lo standard Agent Skills.</p>
+                            </div>
+                        </div>
+
+                        <h3>Installare una Skill da skills.sh</h3>
+                        <p>Ogni Skill fornisce un comando tipo:</p>
+                        <div class="code-block">
+                            <code>npx skills add https://github.com/&lt;owner&gt;/&lt;repo&gt; --skill &lt;skill-name&gt;</code>
+                        </div>
+
+                        <p><strong>Esempio:</strong></p>
+                        <div class="code-block">
+                            <code>npx skills add https://github.com/remotion-dev/skills --skill remotion-best-practices</code>
+                        </div>
+
+                        <p>L'installazione scarica la cartella Skill. <strong>Il punto cruciale è questo</strong>: Copilot deve sapere dove trovarla.</p>
+                    </section>
+
+                    <section id="posizionamento">
+                        <h2>Dove posizionare le Skills per GitHub Copilot</h2>
+                        <p>GitHub Copilot cerca le Agent Skills in percorsi specifici.</p>
+
+                        <h3>Opzione A — Nel repository (consigliata per team)</h3>
+                        <p><strong>Struttura:</strong></p>
+                        <div class="code-block">
+                            <code>&lt;repo&gt;/<br>
+.github/<br>
+&nbsp;&nbsp;skills/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;spring-java/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SKILL.md<br>
+&nbsp;&nbsp;&nbsp;&nbsp;angular/<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SKILL.md</code>
+                        </div>
+
+                        <div class="tool-card">
+                            <h4>Vantaggi</h4>
+                            <ul>
+                                <li>Versionate su Git</li>
+                                <li>Condivise col team</li>
+                                <li>Stesso comportamento per tutti</li>
+                            </ul>
+                        </div>
+
+                        <h3>Opzione B — Locali (solo per te)</h3>
+                        <p>Posizione tipica:</p>
+                        <div class="code-block">
+                            <code>~/.copilot/skills/</code>
+                        </div>
+                        <p>Oppure struttura equivalente per skill utente.</p>
+                    </section>
+
+                    <section id="vscode">
+                        <h2>Usare le Skills in VS Code</h2>
+                        <p><strong>Percorso più stabile oggi</strong></p>
+
+                        <ol class="steps-list">
+                            <li>
+                                <strong>Installa GitHub Copilot e Copilot Chat</strong>
+                                <p>Assicurati di avere entrambe le estensioni installate</p>
+                            </li>
+                            <li>
+                                <strong>Abilita Agent Mode</strong>
+                                <p>Attiva la modalità Agent nelle impostazioni di Copilot</p>
+                            </li>
+                            <li>
+                                <strong>Posiziona le Skill</strong>
+                                <p>Assicurati che le Skill siano in <code>.github/skills/</code></p>
+                            </li>
+                            <li>
+                                <strong>Apri Copilot Chat</strong>
+                                <p>Apri Copilot Chat in Agent Mode</p>
+                            </li>
+                            <li>
+                                <strong>Assegna un task multi-file</strong>
+                                <p>Copilot caricherà automaticamente la Skill se la descrizione è coerente con il task</p>
+                            </li>
+                        </ol>
+
+                        <h3>Esempio Spring</h3>
+                        <p><strong>Prompt:</strong></p>
+                        <div class="code-block">
+                            <code>Applica la skill spring-java per refactorare questi controller: separa service e mapper, standardizza error handling e logging, aggiungi validation e proponi checklist test.</code>
+                        </div>
+
+                        <h3>Esempio Angular</h3>
+                        <p><strong>Prompt:</strong></p>
+                        <div class="code-block">
+                            <code>Usa la skill angular-best-practices per modernizzare questo modulo: elimina any, migliora RxJS, abilita OnPush e proponi test strategy.</code>
+                        </div>
+                    </section>
+
+                    <section id="intellij">
+                        <h2>Usare le Skills in IntelliJ IDEA (JetBrains)</h2>
+
+                        <div class="info-box">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <path d="M12 16v-4M12 8h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div>
+                                <h4>Public Preview</h4>
+                                <p>Copilot Agent Mode in JetBrains è attualmente in public preview.</p>
+                            </div>
+                        </div>
+
+                        <ol class="steps-list">
+                            <li>
+                                <strong>Aggiorna IntelliJ</strong>
+                                <p>Assicurati di avere l'ultima versione</p>
+                            </li>
+                            <li>
+                                <strong>Installa/aggiorna plugin GitHub Copilot</strong>
+                                <p>Dal marketplace dei plugin</p>
+                            </li>
+                            <li>
+                                <strong>Login con account Copilot attivo</strong>
+                                <p>Autentica il tuo account GitHub</p>
+                            </li>
+                            <li>
+                                <strong>Abilita Copilot Chat e Agent Mode</strong>
+                                <p>Nelle impostazioni del plugin</p>
+                            </li>
+                            <li>
+                                <strong>Inserisci le Skill nel repo</strong>
+                                <p>Posizionale in <code>.github/skills/</code></p>
+                            </li>
+                            <li>
+                                <strong>Apri Copilot Chat in Agent Mode</strong>
+                                <p>Assegna task multi-file</p>
+                            </li>
+                        </ol>
+
+                        <div class="note-box">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="22 4 12 14.01 9 11.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <div>
+                                <h4>Nota</h4>
+                                <p>La discovery delle Skill può essere più stabile su VS Code rispetto a IntelliJ finché la preview non è completamente consolidata.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="esempi">
+                        <h2>Esempi Reali di SKILL.md</h2>
+
+                        <h3>Esempio Spring Java</h3>
+                        <p><strong>Percorso:</strong> <code>.github/skills/spring-java/SKILL.md</code></p>
+
+                        <div class="tool-card">
+                            <h4>Contenuto:</h4>
+                            <div class="code-block">
+                                <code>---<br>
+name: spring-java<br>
+description: Standard Spring Boot per controller, service, DTO, error handling e test.<br>
+---<br>
+<br>
+<strong>Regole:</strong><br>
+- Controller sottili, logica in service<br>
+- DTO per boundary API<br>
+- @Valid per validazione<br>
+- ControllerAdvice per gestione errori<br>
+- Logging strutturato<br>
+- Test: unit su service, slice su controller<br>
+<br>
+<strong>Output richiesto:</strong><br>
+1. Piano di refactor<br>
+2. Patch multi-file<br>
+3. Checklist test e regressione</code>
+                            </div>
+                        </div>
+
+                        <h3>Esempio Angular</h3>
+                        <p><strong>Percorso:</strong> <code>.github/skills/angular/SKILL.md</code></p>
+
+                        <div class="tool-card">
+                            <h4>Contenuto:</h4>
+                            <div class="code-block">
+                                <code>---<br>
+name: angular<br>
+description: Best practice Angular enterprise<br>
+---<br>
+<br>
+<strong>Regole:</strong><br>
+- Strict typing, no any<br>
+- RxJS pulito, no nested subscribe<br>
+- OnPush dove possibile<br>
+- Lazy loading moduli<br>
+- Struttura feature-based<br>
+<br>
+<strong>Output:</strong><br>
+- Refactor proposto<br>
+- Diff suggerito<br>
+- Miglioramenti performance<br>
+- Strategia test</code>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="riferimenti">
+                        <h2>Riferimenti Ufficiali</h2>
+
+                        <div class="tool-card">
+                            <h4>GitHub – Agent Skills</h4>
+                            <p><a href="https://docs.github.com/en/copilot/concepts/agents/about-agent-skills" target="_blank">https://docs.github.com/en/copilot/concepts/agents/about-agent-skills</a></p>
+                        </div>
+
+                        <div class="tool-card">
+                            <h4>GitHub Changelog – Copilot supports Agent Skills</h4>
+                            <p><a href="https://github.blog/changelog/2025-12-18-github-copilot-now-supports-agent-skills/" target="_blank">https://github.blog/changelog/2025-12-18-github-copilot-now-supports-agent-skills/</a></p>
+                        </div>
+
+                        <div class="tool-card">
+                            <h4>GitHub Changelog – Agent Mode in JetBrains</h4>
+                            <p><a href="https://github.blog/changelog/2025-05-19-agent-mode-and-mcp-support-for-copilot-in-jetbrains-eclipse-and-xcode-now-in-public-preview/" target="_blank">https://github.blog/changelog/2025-05-19-agent-mode-and-mcp-support-for-copilot-in-jetbrains-eclipse-and-xcode-now-in-public-preview/</a></p>
+                        </div>
+
+                        <div class="tool-card">
+                            <h4>Skills pronte e pubbliche – skills.sh</h4>
+                            <p><a href="https://skills.sh/" target="_blank">https://skills.sh/</a></p>
+                        </div>
+                    </section>
+
+                    <div class="external-link-box">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <div>
+                            <h4>Scopri di Più</h4>
+                            <p>Esplora le altre guide per integrare Agent Skills con automation tools e metodologie avanzate.</p>
+                            <a href="guides.html" class="external-btn">
+                                Tutte le Guide
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>GitHub Copilot Guide Hub</h4>
+                    <p>Risorse e documentazione per sviluppatori</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Link Utili</h4>
+                    <ul>
+                        <li><a href="https://github.com/features/copilot" target="_blank">GitHub Copilot</a></li>
+                        <li><a href="https://docs.github.com/copilot" target="_blank">Documentazione Ufficiale</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GitHub Copilot Guide Hub. Tutte le guide sono a scopo educativo.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/script.js"></script>
+</body>
+</html>
+

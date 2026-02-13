@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide - GitHub Copilot Hub</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/guides-page.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="brand-text">Copilot Guide Hub</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="guides.html" class="active">Guide</a></li>
+                <li><a href="riferimenti.html">Riferimenti</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="container">
+            <header class="page-header">
+                <h1 class="page-title">Tutte le Guide</h1>
+                <p class="page-subtitle">Percorso completo da setup base a metodologie avanzate</p>
+            </header>
+
+            <div class="guides-list">
+                <!-- GUIDA 1: CLI Windows (Intro/Prerequisito) -->
+                <article class="guide-item">
+                    <div class="guide-header">
+                        <div class="guide-icon cli">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                                <path d="M7 8l3 3-3 3M12 14h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="guide-meta">
+                            <span class="guide-badge">Introduzione</span>
+                            <span class="guide-time">15 min</span>
+                        </div>
+                    </div>
+                    <h2 class="guide-title">1. GitHub Copilot CLI su Windows</h2>
+                    <p class="guide-description">
+                        <strong>Guida fondamentale per iniziare.</strong> Installazione e configurazione step-by-step di GitHub Copilot CLI su Windows.
+                        Include prerequisiti, comandi principali e primi passi pratici. Consigliata come punto di partenza.
+                    </p>
+                    <div class="guide-topics">
+                        <span class="topic">Windows</span>
+                        <span class="topic">CLI Setup</span>
+                        <span class="topic">Base</span>
+                        <span class="topic">Prerequisito</span>
+                    </div>
+                    <a href="cli-windows.html" class="guide-link">
+                        Inizia da qui
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </article>
+
+                <!-- GUIDA 1bis: Automation Assets (Intro Alternativa WSL) -->
+                <article class="guide-item">
+                    <div class="guide-header">
+                        <div class="guide-icon automation">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m18-5H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="guide-meta">
+                            <span class="guide-badge">Intro Parallelo</span>
+                            <span class="guide-time">30+ min</span>
+                        </div>
+                    </div>
+                    <h2 class="guide-title">1bis. Automation Assets Engineering (WSL)</h2>
+                    <p class="guide-description">
+                        Guida Engineering di <strong>Giancarlo Compagno</strong>. Parallelo alla guida CLI Windows ma con installazione da WSL.
+                        Copre anche MCP servers, metodologie SLCM e automation assets. Utile per confronto e approfondimento.
+                    </p>
+                    <div class="guide-topics">
+                        <span class="topic">WSL</span>
+                        <span class="topic">MCP Servers</span>
+                        <span class="topic">Engineering</span>
+                        <span class="topic">SLCM</span>
+                    </div>
+                    <a href="automation-assets.html" class="guide-link">
+                        Esplora guida Engineering
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </article>
+
+                <!-- GUIDA 2: Agent Skills -->
+                <article class="guide-item">
+                    <div class="guide-header">
+                        <div class="guide-icon skills">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" stroke-width="2"/>
+                                <polyline points="7.5 4.21 12 6.81 16.5 4.21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="7.5 19.79 7.5 14.6 3 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="21 12 16.5 14.6 16.5 19.79" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="3.27 6.96 12 12.01 20.73 6.96" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <line x1="12" y1="22.08" x2="12" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="guide-meta">
+                            <span class="guide-badge">Avanzata</span>
+                            <span class="guide-time">20 min</span>
+                        </div>
+                    </div>
+                    <h2 class="guide-title">2. Agent Skills con GitHub Copilot</h2>
+                    <p class="guide-description">
+                        Come utilizzare le Agent Skills per estendere Copilot con comportamenti strutturati.
+                        Include setup VS Code e IntelliJ, esempi reali Spring Java e Angular, file SKILL.md completi e skills.sh.
+                    </p>
+                    <div class="guide-topics">
+                        <span class="topic">Agent Skills</span>
+                        <span class="topic">VS Code</span>
+                        <span class="topic">IntelliJ</span>
+                        <span class="topic">Spring/Angular</span>
+                    </div>
+                    <a href="agent-skills.html" class="guide-link">
+                        Leggi la guida
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </article>
+
+                <!-- GUIDA 3: Backlog + Kanban -->
+                <article class="guide-item">
+                    <div class="guide-header">
+                        <div class="guide-icon kanban">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3" y="3" width="7" height="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <rect x="14" y="3" width="7" height="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <rect x="14" y="14" width="7" height="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <rect x="3" y="14" width="7" height="7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="guide-meta">
+                            <span class="guide-badge">Metodologia</span>
+                            <span class="guide-time">45 min</span>
+                        </div>
+                    </div>
+                    <h2 class="guide-title">3. Tecnica Backlog + Kanban (Spec-Driven)</h2>
+                    <p class="guide-description">
+                        Metodologia completa per gestire backlog e Kanban con approccio Spec-Driven usando Backlog.md.
+                        Include workflow completo da prompt.md a task atomici, Agent Mode, continuità tra sessioni e best practices.
+                    </p>
+                    <div class="guide-topics">
+                        <span class="topic">Backlog.md</span>
+                        <span class="topic">Spec-Driven</span>
+                        <span class="topic">Kanban</span>
+                        <span class="topic">Agent Mode</span>
+                    </div>
+                    <a href="backlog-kanban.html" class="guide-link">
+                        Leggi la guida
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>GitHub Copilot Guide Hub</h4>
+                    <p>Risorse e documentazione per sviluppatori</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Link Utili</h4>
+                    <ul>
+                        <li><a href="https://github.com/features/copilot" target="_blank">GitHub Copilot</a></li>
+                        <li><a href="https://docs.github.com/copilot" target="_blank">Documentazione Ufficiale</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 GitHub Copilot Guide Hub. Tutte le guide sono a scopo educativo.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/script.js"></script>
+</body>
+</html>
+
